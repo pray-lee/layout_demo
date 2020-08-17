@@ -7,33 +7,61 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>水平居中布局</title>
     <style>
-        *{
-            margin:0;
-            padding:0
-        }
-        #parent{
-            width: 100%;
-            height: 200px;
-            background:#999
-        }
-        #child{
-            width: 200px;
-            height:200px;
-            background:#ff5252
+        * {
+            margin: 0;
+            padding: 0
         }
 
-    /*    第一种解决方案*/
-        #parent{
-            text-align:center
+        #parent {
+            width: 100%;
+            height: 200px;
+            background: #999
         }
-        #child{
-            display: inline-block
+
+        #child {
+            width: 200px;
+            height: 200px;
+            background: #ff5252
+        }
+
+        /*第一种解决方案*/
+        /*优点和缺点*/
+        /*
+            good: 浏览器兼容性好
+            bad: text-align 属性可以继承，会影响子元素
+        */
+        /*#parent {*/
+        /*    text-align: center*/
+        /*}*/
+        /*#child {*/
+        /*    display: inline-block*/
+        /*}*/
+
+        /*第二种解决方法*/
+        /*优缺点*/
+        /*
+            good: 只需要设置子级
+            bad: 如果子级脱离文档流，就会导致margin失效
+        */
+        /*#child {*/
+        /*    display: table; !*display只能是块级元素, 这里可以使用block*!*/
+        /*    margin: 0 auto;*/
+        /*}*/
+
+        /*第三种解决方案*/
+        #parent {
+            position: relative
+        }
+        #child {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%)
         }
     </style>
 </head>
 <body>
-    <div id="parent">
-        <div id="child"></div>
-    </div>
+<div id="parent">
+    <div id="child"></div>
+</div>
 </body>
 </html>
